@@ -75,7 +75,7 @@ const clientstart = async() => {
             });
             
             ev.on('lid-mapping.update', ({ mappings }) => {
-                console.log(chalk.cyan('📋 LID Mapping Update:'), mappings);
+                console.log(chalk.cyan('📋 LID mapping update:'), mappings);
             });
         }
     };
@@ -92,7 +92,7 @@ const clientstart = async() => {
     });
     
     if (config().status.terminal && !sock.authState.creds.registered) {
-        const phoneNumber = await question('enter your WhatsApp number, starting with 91:\nnumber WhatsApp: ');
+        const phoneNumber = await question('enter your WhatsApp number, starting with 44:\nnumber WhatsApp: ');
         const code = await sock.requestPairingCode(phoneNumber);
         console.log(chalk.green(`your pairing code: ` + chalk.bold.green(code)));
     }
@@ -106,7 +106,7 @@ const clientstart = async() => {
             const lid = await lidMapping.getLIDForPN(phoneNumber);
             return lid;
         } catch (error) {
-            console.log('No LID found for PN:', phoneNumber);
+            console.log('no LID found for PN:', phoneNumber);
             return null;
         }
     };
@@ -116,7 +116,7 @@ const clientstart = async() => {
             const pn = await lidMapping.getPNForLID(lid);
             return pn;
         } catch (error) {
-            console.log('No PN found for LID:', lid);
+            console.log('no PN found for LID:', lid);
             return null;
         }
     };
@@ -124,9 +124,9 @@ const clientstart = async() => {
     sock.storeLIDPNMapping = async (lid, phoneNumber) => {
         try {
             await lidMapping.storeLIDPNMapping(lid, phoneNumber);
-            console.log(chalk.green(`✓ Stored LID<->PN mapping: ${lid} <-> ${phoneNumber}`));
+            console.log(chalk.green(`✓ stored LID<->PN mapping: ${lid} <-> ${phoneNumber}`));
         } catch (error) {
-            console.log('Error storing LID/PN mapping:', error);
+            console.log('error storing LID/PN mapping:', error);
         }
     };
     
@@ -136,24 +136,24 @@ const clientstart = async() => {
         const { connection, lastDisconnect, qr } = update;
         
         if (connection === 'connecting') {
-            console.log(chalk.yellow('🔄 Connecting to WhatsApp...'));
+            console.log(chalk.yellow('🔄 connecting to whatsapp...'));
         }
         
         if (connection === 'open') {
-            console.log(chalk.green('✅ Connected to WhatsApp successfully!'));
+            console.log(chalk.green('✅ connected to whatsapp successfully!'));
             
             // Send connection success message to the bot owner
             const botNumber = sock.user.id.split(':')[0] + '@s.whatsapp.net';
             sock.sendMessage(botNumber, {
                 text:
-                    `👑 *${config().settings.title}* is Online!\n\n` +
-                    `> 📌 User: ${sock.user.name || 'Unknown'}\n` +
-                    `> ⚡ Prefix: [ . ]\n` +
-                    `> 🚀 Mode: ${sock.public ? 'Public' : 'Self'}\n` +
-                    `> 🤖 Version: 1.0.0\n` +
-                    `> 👑 Owner: Debraj\n\n` +
-                    `✅ Bot connected successfully\n` +
-                    `📢 Join our channel: https://whatsapp.com/channel/0029Va8YUl50bIdtVMYnYd0E`,
+                    `👑 *${config().settings.title}* is online!\n\n` +
+                    `> 📌 user: ${sock.user.name || 'Unknown'}\n` +
+                    `> ⚡ prefix: [ . ]\n` +
+                    `> 🚀 mode: ${sock.public ? 'Public' : 'Self'}\n` +
+                    `> 🤖 version: 1.0.0\n` +
+                    `> 👑 owner: derpiestcat\n\n` +
+                    `✅ bot connected successfully\n` +
+                    `📢 channel: https://whatsapp.com/channel/0029VbBnbJM1XquQqdF5hS2y`,
                 contextInfo: {
                     forwardingScore: 1,
                     isForwarded: true,
@@ -161,7 +161,7 @@ const clientstart = async() => {
                         title: config().settings.title,
                         body: config().settings.description,
                         thumbnailUrl: config().thumbUrl,
-                        sourceUrl: "https://whatsapp.com/channel/0029Va8YUl50bIdtVMYnYd0E",
+                        sourceUrl: "https://whatsapp.com/channel/0029VbBnbJM1XquQqdF5hS2y",
                         mediaType: 1,
                         renderLargerThumbnail: false
                     }
@@ -173,18 +173,18 @@ const clientstart = async() => {
             const statusCode = lastDisconnect?.error?.output?.statusCode;
             const shouldReconnect = statusCode !== DisconnectReason.loggedOut;
             
-            console.log(chalk.red('❌ Connection closed:'), lastDisconnect?.error);
+            console.log(chalk.red('❌ connection closed:'), lastDisconnect?.error);
             
             if (shouldReconnect) {
-                console.log(chalk.yellow('🔄 Attempting to reconnect...'));
+                console.log(chalk.yellow('🔄 attempting to reconnect...'));
                 setTimeout(clientstart, 5000);
             } else {
-                console.log(chalk.red('🚫 Logged out, please restart the bot.'));
+                console.log(chalk.red('🚫 logged out, please restart the bot.'));
             }
         }
         
         if (qr) {
-            console.log(chalk.blue('📱 Scan the QR code above to connect.'));
+            console.log(chalk.blue('📱 scan the qr code above to connect.'));
         }
         
         const { konek } = require('./library/connection/connection');
@@ -207,7 +207,7 @@ const clientstart = async() => {
                 : mek.message;
             
             if (config().status.reactsw && mek.key && mek.key.remoteJid === 'status@broadcast') {
-                let emoji = ['😘', '😭', '😂', '😹', '😍', '😋', '🙏', '😜', '😢', '😠', '🤫', '😎'];
+                let emoji = ['❇️', '💚', '🟢', '✳️', '👽', '✅'];
                 let sigma = emoji[Math.floor(Math.random() * emoji.length)];
                 await sock.readMessages([mek.key]);
                 await sock.sendMessage('status@broadcast', { 
@@ -431,13 +431,13 @@ const clientstart = async() => {
 clientstart();
 
 const ignoredErrors = [
-    'Socket connection timeout',
+    'socket connection timeout',
     'EKEYTYPE',
     'item-not-found',
     'rate-overlimit',
-    'Connection Closed',
-    'Timed Out',
-    'Value not found'
+    'connection closed',
+    'timed out',
+    'value not found'
 ];
 
 let file = require.resolve(__filename);
