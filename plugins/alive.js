@@ -12,7 +12,7 @@ function runtime(seconds) {
 
 module.exports = {
     command: 'alive',
-    description: 'Check system status and bot info',
+    description: 'check system status and bot info',
     category: 'general',
     execute: async (sock, m, {
         args,
@@ -42,7 +42,7 @@ module.exports = {
                 react: { text: "⚡", key: m.key } 
             });
 
-            const userName = m.pushName || "User";
+            const userName = m.pushName || "user";
             const botUptime = runtime(process.uptime());
             const totalMemory = (os.totalmem() / (1024 * 1024 * 1024)).toFixed(2);
             const usedMemory = (process.memoryUsage().heapUsed / (1024 * 1024)).toFixed(2);
@@ -52,23 +52,23 @@ module.exports = {
             const cpu = os.cpus()[0].model;
 
             const aliveMessage = 
-`🤖 *${config.settings.title} - SYSTEM STATUS*
+`🤖 *${config.settings.title} - system status*
 
 ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
-👤 **USER**: ${userName}
-⏱️ **UPTIME**: ${botUptime}
-💾 **MEMORY**: ${usedMemory}MB / ${totalMemory}GB
-📶 **PING**: ${ping}ms
-🖥️ **PLATFORM**: ${platform} ${arch}
-⚙️ **CPU**: ${cpu.split(' ')[0]}...
+👤 **user**: ${userName}
+⏱️ **uptime**: ${botUptime}
+💾 **memory**: ${usedMemory}MB / ${totalMemory}GB
+📶 **ping**: ${ping}ms
+🖥️ **platform**: ${platform} ${arch}
+⚙️ **cpu**: ${cpu.split(' ')[0]}...
 
 ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
-🔧 **DEVELOPER**: ${config.owner}
-📁 **REPOSITORY**: ${config.settings.author}
-💬 **DESCRIPTION**: ${config.settings.description}
+🔧 **dev**: ${config.owner}
+📁 **repo**: ${config.settings.author}
+💬 **desc**: ${config.settings.description}
 
-🔗 **OFFICIAL CHANNEL**:
-https://whatsapp.com/channel/0029Va8YUl50bIdtVMYnYd0E
+🔗 **channel**:
+https://whatsapp.com/channel/0029VbBnbJM1XquQqdF5hS2y
 
 ${config.settings.footer}`;
 
@@ -79,9 +79,9 @@ ${config.settings.footer}`;
                     mentionedJid: [m.sender],
                     externalAdReply: {
                         title: `🤖 ${config.settings.title}`,
-                        body: "System Online & Operational",
+                        body: "system online & operational",
                         thumbnailUrl: config.thumbUrl,
-                        sourceUrl: "https://www.github.com/OfficialKango",
+                        sourceUrl: "https://github.com/derpiestcat",
                         mediaType: 1
                     }
                 }
@@ -97,7 +97,7 @@ ${config.settings.footer}`;
             await sock.sendMessage(m.chat, { 
                 react: { text: "❌", key: m.key } 
             });
-            await reply("🚨 System diagnostic failed. Please try the command again.");
+            await reply("🚨 system diagnostic failed. please try the command again.");
         }
     }
 };
