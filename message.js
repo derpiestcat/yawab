@@ -11,7 +11,7 @@ const { tempfiles } = require("./library/uploader");
 const { fquoted } = require('./library/quoted');     
 const Api = require('./library/Api');
 
-const image = fs.readFileSync('./thumbnail/image.jpg');
+const image = fs.readFileSync('./thumbnail/image.png');
 const docu = fs.readFileSync('./thumbnail/document.jpg');
 
 let jidNormalizedUser, getContentType, isPnUser;
