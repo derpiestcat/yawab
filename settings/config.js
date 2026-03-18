@@ -22,20 +22,20 @@ const config = {
         private: "this is specifically for private chat"
     },
     mess: {
-        owner: 'This command is only for the bot owner!',
-        done: 'Mode changed successfully!',
-        error: 'Something went wrong!',
-        wait: 'Please wait...'
+        owner: 'this command is only for the bot owner!',
+        done: 'mode changed successfully!',
+        error: 'something went wrong!',
+        wait: 'please wait...'
     },
     settings: {
-        title: "Simple WA Base Bot",
-        packname: 'WA-BASE',
-        description: "this script was created by Debraj",
-        author: 'https://www.github.com/OfficialKango',
-        footer: "饾棈饾柧饾梾饾柧饾梹饾棆饾柡饾梿: @official_kango"
+        title: "clean easy wa bot",
+        packname: 'yawab',
+        description: "og script by debraj, this by derpiestcat",
+        author: 'https://github.com/derpiestcat/',
+        footer: "@derpiestcat"
     },
     newsletter: {
-        name: "Simple WA Base Bot",
+        name: "yawab",
         id: "0@newsletter"
     },
     api: {
@@ -43,8 +43,8 @@ const config = {
         apikey: "hector"
     },
     sticker: {
-        packname: "Simple WA Base Bot",
-        author: "WA-BASE"
+        packname: "clean sticker by yawab",
+        author: "yawab"
     }
 }
 
