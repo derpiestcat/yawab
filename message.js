@@ -30,15 +30,15 @@ class PluginLoader {
         this.categories = new Map();
         this.pluginsDir = path.join(__dirname, 'plugins');
         this.defaultCategories = {
-            'ai': '🤖 AI MENU',
-            'downloader': '📥 DOWNLOAD MENU',
-            'fun': '🎮 FUN MENU',
-            'general': '⚡ GENERAL MENU',
-            'group': '👥 GROUP MENU',
-            'owner': '👑 OWNER MENU',
-            'other': '📦 OTHER MENU',
-            'tools': '🛠️ TOOLS MENU',
-            'video': '🎬 VIDEO MENU'
+            'ai': '🤖 ai menu',
+            'downloader': '📥 download menu',
+            'fun': '🎮 fun menu',
+            'general': '⚡ general menu',
+            'group': '👥 group menu',
+            'owner': '👑 owner menu',
+            'other': '📦 other menu',
+            'tools': '🛠️ tools menu',
+            'video': '🎬 video menu'
         };
         this.loadPlugins();
     }
@@ -48,7 +48,7 @@ class PluginLoader {
             // Create plugins directory if it doesn't exist
             if (!fs.existsSync(this.pluginsDir)) {
                 fs.mkdirSync(this.pluginsDir, { recursive: true });
-                console.log(chalk.cyan('📁 Created plugins directory'));
+                console.log(chalk.cyan('📁 created plugins directory'));
                 return;
             }
 
@@ -86,18 +86,18 @@ class PluginLoader {
                         this.plugins.set(plugin.command, plugin);
                         this.categories.get(plugin.category).push(plugin.command);
                         
-                        console.log(chalk.green(`✅ Loaded plugin: ${plugin.command} (${plugin.category})`));
+                        console.log(chalk.green(`✅ loaded plugin: ${plugin.command} (${plugin.category})`));
                     } else {
-                        console.log(chalk.yellow(`⚠️  Invalid plugin structure in: ${file}`));
+                        console.log(chalk.yellow(`⚠️  invalid plugin structure in: ${file}`));
                     }
                 } catch (error) {
-                    console.log(chalk.red(`❌ Failed to load plugin ${file}:`, error.message));
+                    console.log(chalk.red(`❌ failed to load plugin ${file}:`, error.message));
                 }
             }
 
-            console.log(chalk.cyan(`📦 Loaded ${this.plugins.size} plugins across ${this.categories.size} categories`));
+            console.log(chalk.cyan(`📦 loaded ${this.plugins.size} plugins across ${this.categories.size} categories`));
         } catch (error) {
-            console.log(chalk.red('❌ Error loading plugins:', error.message));
+            console.log(chalk.red('❌ error loading plugins:', error.message));
         }
     }
 
@@ -145,7 +145,7 @@ class PluginLoader {
             });
             return true;
         } catch (error) {
-            console.log(chalk.red(`❌ Error executing plugin ${command}:`, error));
+            console.log(chalk.red(`❌ error executing plugin ${command}:`, error));
             return true; // Silent - don't respond with error
         }
     }
@@ -330,16 +330,16 @@ module.exports = sock = async (sock, m, chatUpdate, store) => {
 
                 const K0MRAID = `
 ╔〘 *WA-BASE-BOT* 
-║ 👑 *Owner:* Debraj 
-║ 🧩 *Prefix:* [ . ]
-║ 🖥️ *Host:* ${host}
-║ 🧠 *Commands:* ${totalCommands}
-║ ⚙️ *Mode:* ${mode}
-║ ⏱️ *Uptime:* ${uptime}
-║ ⚡ *Ping:* ${ping.toFixed(0)} ms
-║ 📊 *RAM Used:* ${usedMem.toFixed(2)} MB / ${totalMem.toFixed(2)} GB
+║ 👑 *owner:* derpiestcat 
+║ 🧩 *prefix:* [ . ]
+║ 🖥️ *host:* ${host}
+║ 🧠 *commands:* ${totalCommands}
+║ ⚙️ *mode:* ${mode}
+║ ⏱️ *uptime:* ${uptime}
+║ ⚡ *ping:* ${ping.toFixed(0)} ms
+║ 📊 *RAM used:* ${usedMem.toFixed(2)} MB / ${totalMem.toFixed(2)} GB
 ║ 🧬 *RAM:* [${ramBar}] ${memPercent.toFixed(2)}%
-╚═〘 *System Status*
+╚═〘 *system status*
 
 ${pluginMenuSections}`;
 
@@ -351,12 +351,12 @@ ${pluginMenuSections}`;
                         forwardingScore: 1,
                         isForwarded: false,
                         externalAdReply: {
-                            title: "Simple WA Base Bot",
-                            body: "Official Dev Account URL",
+                            title: "yawab",
+                            body: "dev url:",
                             mediaType: 3,
                             thumbnailUrl: config.thumbUrl,
-                            mediaUrl: "https://t.me/debrajzero",
-                            sourceUrl: "https://t.me/debrajzero",
+                            mediaUrl: "https://x.com/derpiestcat",
+                            sourceUrl: "https://x.com/derpiestcat",
                             showAdAttribution: true,
                             renderLargerThumbnail: false
                         }
@@ -368,7 +368,7 @@ ${pluginMenuSections}`;
             case 'reload': {
                 if (!isCreator) return; // Silent - don't respond
                 pluginLoader.reloadPlugins();
-                await reply(`✅ Plugins reloaded! Loaded ${pluginLoader.getPluginCount()} commands across ${pluginLoader.categories.size} categories.`);
+                await reply(`✅ plugins reloaded! loaded ${pluginLoader.getPluginCount()} commands across ${pluginLoader.categories.size} categories.`);
                 break;
             }
             
